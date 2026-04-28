@@ -1,13 +1,21 @@
 'use strict'
 
-import produtos from "./produtos.json" with {type: "json"}
+import {produtos} from "./produtos.js"
 
-function classificarProduto(numero) {
-    let estrelaCheia = numero
-    let estralaVazia = 5 - numero
+function definirAvaliacao(avaliacao) {
+    let fullStars = avaliacao
+    let emptyStars = 5 - avaliacao
+    let stars = ''
 
-    for(igual = 5;)
+    for (fullStars; fullStars > 0; fullStars--)
+        stars += '★'
+
+    for (emptyStars; emptyStars > 0; emptyStars--)
+        stars += '☆'
+
+    return stars
 }
+
 
 
 function criarCard(produto) {
@@ -28,12 +36,12 @@ function criarCard(produto) {
 
     const categoria = document.createElement('h5')
     categoria.textContent = produto.categoria
-    
-    const classificacao = document.createElement('h6')
-    classificacao.textContent =  
+
+    const avaliacao = document.createElement('h6')
+    avaliacao.textContent = definirAvaliacao(produto.classificacao)
 
 
-    card.append(foto, nome, descricao, preco, categoria)
+    card.append(foto, nome, descricao, preco, categoria, avaliacao)
 
 
 
